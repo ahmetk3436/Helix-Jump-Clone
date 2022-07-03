@@ -5,13 +5,9 @@ using UnityEngine.SceneManagement;
 using TMPro;
 public class GameManager : MonoBehaviour
 {
-    private int score;
+    private int score,gamePlayed;
     public TextMeshProUGUI scoreText;
 
-    void Update()
-    {
-        
-    }
     public void GameScore(int ringScore)
     {
         score += ringScore;
@@ -19,6 +15,14 @@ public class GameManager : MonoBehaviour
     }
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        gamePlayed++;
+        if(gamePlayed > 5)
+        {
+            int random = Random.Range(0, 6);
+            SceneManager.LoadScene(random);
+        } else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 }
